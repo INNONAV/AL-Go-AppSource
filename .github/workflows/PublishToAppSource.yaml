@@ -38,7 +38,7 @@ jobs:
       telemetryScopeJson: ${{ steps.init.outputs.telemetryScopeJson }}
     steps:
       - name: Dump Workflow Information
-        uses: INNONAV/AL-Go/Actions/DumpWorkflowInfo@1daed1b32058623d30b9291af9891eaf9840e308
+        uses: INNONAV/AL-Go/Actions/DumpWorkflowInfo@6314d667c8edd88dc76a8d160cc5970f7a9a17a3
         with:
           shell: powershell
 
@@ -47,7 +47,7 @@ jobs:
 
       - name: Initialize the workflow
         id: init
-        uses: INNONAV/AL-Go/Actions/WorkflowInitialize@1daed1b32058623d30b9291af9891eaf9840e308
+        uses: INNONAV/AL-Go/Actions/WorkflowInitialize@6314d667c8edd88dc76a8d160cc5970f7a9a17a3
         with:
           shell: powershell
 
@@ -60,20 +60,20 @@ jobs:
         uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
 
       - name: Read settings
-        uses: INNONAV/AL-Go/Actions/ReadSettings@1daed1b32058623d30b9291af9891eaf9840e308
+        uses: INNONAV/AL-Go/Actions/ReadSettings@6314d667c8edd88dc76a8d160cc5970f7a9a17a3
         with:
           shell: powershell
 
       - name: Read secrets
         id: ReadSecrets
-        uses: INNONAV/AL-Go/Actions/ReadSecrets@1daed1b32058623d30b9291af9891eaf9840e308
+        uses: INNONAV/AL-Go/Actions/ReadSecrets@6314d667c8edd88dc76a8d160cc5970f7a9a17a3
         with:
           shell: powershell
           gitHubSecrets: ${{ toJson(secrets) }}
           getSecrets: 'appSourceContext'
 
       - name: Deliver
-        uses: INNONAV/AL-Go/Actions/Deliver@1daed1b32058623d30b9291af9891eaf9840e308
+        uses: INNONAV/AL-Go/Actions/Deliver@6314d667c8edd88dc76a8d160cc5970f7a9a17a3
         env:
           Secrets: '${{ steps.ReadSecrets.outputs.Secrets }}'
         with:
@@ -94,7 +94,7 @@ jobs:
 
       - name: Finalize the workflow
         id: PostProcess
-        uses: INNONAV/AL-Go/Actions/WorkflowPostProcess@1daed1b32058623d30b9291af9891eaf9840e308
+        uses: INNONAV/AL-Go/Actions/WorkflowPostProcess@6314d667c8edd88dc76a8d160cc5970f7a9a17a3
         env:
           GITHUB_TOKEN: ${{ github.token }}
         with:
